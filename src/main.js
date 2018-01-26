@@ -70,7 +70,7 @@ new Vue({
 	        </div><!--/.nav-collapse -->
 	      </div>
 	    </nav>
-		<router-view></router-view>
+		<router-view></router-view>    
 	</div>
   `
 }).$mount("#app")
