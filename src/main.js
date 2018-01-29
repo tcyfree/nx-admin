@@ -3,18 +3,19 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
-import App from './App'
-import Customers from './components/Customers'
-import Login from './components/Login'
-import Report from './components/Report'
-import CommunityList from './components/CommunityList'
-import UserList from './components/UserList'
-import Page from './components/Pagination'
-import TestDemo from './components/TestDemo'
-import About from './components/About'
-import Add from './components/Add'
-import CustomerDetails from './components/CustomerDetails'
-import Edit from './components/Edit'
+import App from './App.vue'
+// import Customers from './components/Customers'
+// import Login from './components/Login'
+// import Report from './components/Report'
+// import CommunityList from './components/CommunityList'
+// import UserList from './components/UserList'
+// import Page from './components/Pagination'
+// import TestDemo from './components/TestDemo'
+// import About from './components/About'
+// import Add from './components/Add'
+// import CustomerDetails from './components/CustomerDetails'
+// import Edit from './components/Edit'
+import routerConfig from './config/router.config.js'
 
 Vue.config.productionTip = false
 
@@ -22,58 +23,34 @@ Vue.use(VueRouter)
 Vue.use(VueResource)
 
 // 设置路由
-const router = new VueRouter({
-  mode:"history",
-  base:__dirname,
-  routes:[
-    {path:"/report",component:Report},
-    {path:"/community_list",component:CommunityList},
-    {path:"/",component:Login},
-    {path:"/user_list",component:UserList},
-    {path:"/page",component:Page},
-    {path:"/customer",component:Customers},
-    {path:"/test_demo",component:TestDemo},
-    {path:"/about",component:About},
-    {path:"/add",component:Add},
-    {path:"/customer/:id",component:CustomerDetails},
-    {path:"/edit/:id",component:Edit},
-  ]
-})
+// const router = new VueRouter({
+//   mode:"history",
+//   base:__dirname,
+//   routes:[
+//     {path:"/report",component:Report},
+//     {path:"/community_list",component:CommunityList},
+//     {path:"/",component:Login},
+//     {path:"/user_list",component:UserList},
+//     {path:"/page",component:Page},
+//     {path:"/customer",component:Customers},
+//     {path:"/test_demo",component:TestDemo},
+//     {path:"/about",component:About},
+//     {path:"/add",component:Add},
+//     {path:"/customer/:id",component:CustomerDetails},
+//     {path:"/edit/:id",component:Edit},
+//   ]
+// })
+// const router = new VueResource(routerConfig)
+const router=new VueRouter(routerConfig);
 
 /* eslint-disable no-new */
 new Vue({
+  el: '#app',
+  render: h => h(App),
+  linkActiveClass:'active', //更新活动链接的class类名
   router,
-  template: `
-	<div id="app">
-		 <nav class="navbar navbar-default">
-	      <div class="container">
-	        <div class="navbar-header">
-	          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-	            <span class="sr-only">Toggle navigation</span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	            <span class="icon-bar"></span>
-	          </button>
-	          <a class="navbar-brand" href="#">暖象科技</a>
-	        </div>
-	        <div id="navbar" class="collapse navbar-collapse">
-	          <ul class="nav navbar-nav">
-	              <li ><router-link to="/">登录</router-link></li>
-	           
-	            <li><router-link to="/report">数据概览</router-link></li>
-	            <li><router-link to="/customer">数据展示</router-link></li>
-	            <li><router-link to="/community_list">行动社管理</router-link></li>
-	            <li><router-link to="/user_list">用户管理</router-link></li>
-	            <!--<li><router-link to="/page">分页管理</router-link></li>-->
-	            <li><router-link to="/test_demo">测试样例</router-link></li>
-	          </ul>
-	        </div><!--/.nav-collapse -->
-	      </div>
-	    </nav>
-		<router-view></router-view>    
-	</div>
-  `
-}).$mount("#app")
+})
+  // .$mount("#app")
 
 // 使用拦截器可以在在请求前对Header进行添加
 
