@@ -11,13 +11,13 @@
         <label>密码：</label>
         <input type="password" class="form-control" placeholder="password" value="admin1234" v-model="password">
       </div>
-      <!--<div class="form-group float:left" >-->
-        <!--<label>验证码：</label>-->
-           <!--&lt;!&ndash;<input type="text" class="form-control" placeholder="验证码" v-model="check_code">&ndash;&gt;-->
-        <!--<div @click="fetchCustomers">-->
-          <!--<img v-bind:src="check_code_img.base64_img">-->
-        <!--</div>-->
-      <!--</div>-->
+      <div class="form-group float:left" style="display: none" >
+        <label>验证码：</label>
+           <input type="text" class="form-control" placeholder="验证码" v-model="check_code">
+        <div @click="fetchCustomers">
+          <img v-bind:src="check_code_img.base64_img">
+        </div>
+      </div>
       <button type="submit" class="btn btn-primary">登录</button>
     </form>
   </div>

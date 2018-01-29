@@ -4,44 +4,18 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueResource from 'vue-resource'
 import App from './App.vue'
-// import Customers from './components/Customers'
-// import Login from './components/Login'
-// import Report from './components/Report'
-// import CommunityList from './components/CommunityList'
-// import UserList from './components/UserList'
-// import Page from './components/Pagination'
-// import TestDemo from './components/TestDemo'
-// import About from './components/About'
-// import Add from './components/Add'
-// import CustomerDetails from './components/CustomerDetails'
-// import Edit from './components/Edit'
 import routerConfig from './config/router.config.js'
+import axios from 'axios'
 
 Vue.config.productionTip = false
 
 Vue.use(VueRouter)
 Vue.use(VueResource)
 
-// 设置路由
-// const router = new VueRouter({
-//   mode:"history",
-//   base:__dirname,
-//   routes:[
-//     {path:"/report",component:Report},
-//     {path:"/community_list",component:CommunityList},
-//     {path:"/",component:Login},
-//     {path:"/user_list",component:UserList},
-//     {path:"/page",component:Page},
-//     {path:"/customer",component:Customers},
-//     {path:"/test_demo",component:TestDemo},
-//     {path:"/about",component:About},
-//     {path:"/add",component:Add},
-//     {path:"/customer/:id",component:CustomerDetails},
-//     {path:"/edit/:id",component:Edit},
-//   ]
-// })
-// const router = new VueResource(routerConfig)
+// 设置路由，创建路由实例
 const router=new VueRouter(routerConfig);
+
+// Vue.prototype.$http=axios;
 
 /* eslint-disable no-new */
 new Vue({
