@@ -1,153 +1,195 @@
-<p align="center">
-  <img width="320" src="https://wpimg.wallstcn.com/ecc53a42-d79b-42e2-8852-5126b810a4c8.svg">
-</p>
+# manage-system #
+基于Vue.js 2.x系列 + Element UI 的后台管理系统解决方案。[线上地址](http://blog.gdfengshuo.com/example/work/)
 
-<p align="center">
-	<a href="https://github.com/vuejs/vue">
-		<img src="https://img.shields.io/badge/vue-2.5.10-brightgreen.svg" alt="vue">
-	</a>
-	<a href="https://github.com/ElemeFE/element">
-		<img src="https://img.shields.io/badge/element--ui-2.0.8-brightgreen.svg" alt="element-ui">
-	</a>
-	<a href="https://travis-ci.org/PanJiaChen/vue-element-admin" rel="nofollow">
-		<img src="https://travis-ci.org/PanJiaChen/vue-element-admin.svg?branch=master" alt="Build Status">
-	</a>
-	<a href="https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE">
-		<img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license">
-	</a>
-	<a href="https://github.com/PanJiaChen/vue-element-admin/releases">
-		<img src="https://img.shields.io/github/release/PanJiaChen/vue-element-admin.svg" alt="GitHub release">
-	</a>
-</p>
+[English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
 
-English | [简体中文](./README.zh-CN.md)
+## 捐赠
+![微信扫一扫](http://blog.gdfengshuo.com/images/weixin.jpg)
 
-## Introduction
+## 前言 ##
+之前在公司用了Vue + Element组件库做了个后台管理系统，基本很多组件可以直接引用组件库的，但是也有一些需求无法满足。像图片裁剪上传、富文本编辑器、图表等这些在后台管理系统中很常见的功能，就需要引用其他的组件才能完成。从寻找组件，到使用组件的过程中，遇到了很多问题，也积累了宝贵的经验。所以我就把开发这个后台管理系统的经验，总结成这个后台管理系统解决方案。
 
-`vue-element-admin` is a production-ready solution for admin interfaces. Based on [Vue.js](https://github.com/vuejs/vue) and use the UI Toolkit -- [element](https://github.com/ElemeFE/element). `vue-element-admin` is a magical vue admin, it based on the newest development stack of vue, built-in i18n solution, typical templates for enterprise applications, lots of awesome features. It helps you build a large complex Single-Page Applications. I believe whatever your needs are, this project will help you.
+该方案作为一套多功能的后台框架模板，适用于绝大部分的后台管理系统（Web Management System）开发。基于vue.js,使用vue-cli脚手架快速生成项目目录，引用Element UI组件库，方便开发快速简洁好看的组件。分离颜色样式，支持手动切换主题色，而且很方便使用自定义主题色。
 
-- [Preview](http://panjiachen.github.io/vue-element-admin)
+## 功能 ##
+- [x] Element UI
+- [x] 登录/注销
+- [x] 表格
+- [x] 表单
+- [x] 图表 :bar_chart:
+- [x] 富文本编辑器
+- [x] markdown编辑器
+- [x] 图片拖拽/裁剪上传
+- [x] 支持切换主题色 :sparkles:
+- [x] 列表拖拽排序
 
-- [Documentation](https://panjiachen.github.io/vue-element-admin-site/#/)
 
-- [wiki](https://github.com/PanJiaChen/vue-element-admin/wiki)
+## 目录结构介绍 ##
 
-- [donate](https://panjiachen.github.io/vue-element-admin-site/#/donate)
+	|-- build                            // webpack配置文件
+	|-- config                           // 项目打包路径
+	|-- src                              // 源码目录
+	|   |-- components                   // 组件
+	|       |-- common                   // 公共组件
+	|           |-- Header.vue           // 公共头部
+	|           |-- Home.vue           	 // 公共路由入口
+	|           |-- Sidebar.vue          // 公共左边栏
+	|		|-- page                   	 // 主要路由页面
+	|           |-- BaseCharts.vue       // 基础图表
+	|           |-- BaseForm.vue         // 基础表单
+	|           |-- BaseTable.vue        // 基础表格
+	|           |-- Login.vue          	 // 登录
+	|           |-- Markdown.vue         // markdown组件
+	|           |-- Readme.vue           // 自述组件
+	|           |-- Upload.vue           // 图片上传
+	|           |-- VueEditor.vue        // 富文本编辑器
+	|           |-- VueTable.vue         // vue表格组件
+	|   |-- App.vue                      // 页面入口文件
+	|   |-- main.js                      // 程序入口文件，加载各种公共组件
+	|-- .babelrc                         // ES6语法编译配置
+	|-- .editorconfig                    // 代码编写规格
+	|-- .gitignore                       // 忽略的文件
+	|-- index.html                       // 入口html文件
+	|-- package.json                     // 项目及工具的依赖配置文件
+	|-- README.md                        // 说明
 
-**vue-element-admin is a admin interfaces integration solution, which is not suitable for secondary development as a base template.**
 
- - Base template recommends using: [vueAdmin-template](https://github.com/PanJiaChen/vueAdmin-template)  
- - Desktop: [electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
+## 安装步骤 ##
 
-**Note: This project uses element-ui@2.0.0+ version, so the minimum compatible vue@2.5.0**
+	git clone https://github.com/lin-xin/manage-system.git      // 把模板下载到本地
+	cd manage-system    // 进入模板目录
+	npm install         // 安装项目依赖，等待安装完成之后
 
-## Preparation
+## 本地开发 ##
 
-You need to install [node](http://nodejs.org/) and [git](https://git-scm.com/) locally. The project is based on [ES2015+](http://es6.ruanyifeng.com/)、[vue](https://cn.vuejs.org/index.html)、[vuex](https://vuex.vuejs.org/zh-cn/)、[vue-router](https://router.vuejs.org/zh-cn/) 和 [element-ui](https://github.com/ElemeFE/element). All data requests for this project are simulated using [Mock.js](https://github.com/nuysoft/Mock). It would be helpful if you have pre-existing knowledge on those.
+	// 开启服务器，浏览器访问 http://localhost:8080
+	npm run dev
 
- **This project is not a scaffolding and is more of an integrated solution.**
+## 构建生产 ##
 
- **This project does not support low version browsers (e.g. IE). Please add polyfill yourself if you need them.**
+	// 执行构建命令，生成的dist文件夹放在服务器下即可访问
+	npm run build
 
- <p align="center">
-  <img width="900" src="https://wpimg.wallstcn.com/a5894c1b-f6af-456e-82df-1151da0839bf.png">
-</p>
+## 组件使用说明与演示 ##
 
-## Features
-```
-- Login / Logout
-- Permission authentication
-- Multi-environment build
-- Dynamic sidebar (supports multi-level routing)
-- Dynamic breadcrumb
-- I18n
-- Customizable theme
-- Tags-view(Tab page Support right-click operation)
-- Rich text editor
-- Markdown editor
-- JSON editor
-- Screenfull
-- Drag and drop list
-- Svg Sprite
-- Dashboard
-- Mock data
-- Echarts
-- Clipboard
-- 401/404 error page
-- Error log
-- Export excel
-- Export zip
-- Front-end visualization excel
-- Tree Table
-- Table example
-- Dynamictable example
-- Drag and drop table example
-- Inline edit table example
-- Form example
-- Two-step login
-- SplitPane
-- Dropzone
-- Sticky
-- CountTo
-- Markdown to html
-```
+### vue-schart ###
+vue.js封装sChart.js的图表组件。访问地址：[vue-schart](https://github.com/linxin/vue-schart)
+<p><a href="https://www.npmjs.com/package/vue-schart"><img src="https://img.shields.io/npm/dm/vue-schart.svg" alt="Downloads"></a></p>
 
-## Getting started
-
-```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-element-admin.git
-
-# install dependency
-npm install
-
-# develop
-npm run dev
-```
-
-This will automatically open http://localhost:9527.
-
-## Build
-```bash
-# build for test environment
-npm run build:sit
-
-# build for production environment
-npm run build:prod
-```
-
-## Advanced
-```bash
-# --report to build with bundle size analytics
-npm run build:prod --report
-
-# --preview to start a server in local to preview
-npm run build:prod --preview
-
-# lint code
-npm run lint
-
-# auto fix
-npm run lint -- --fix
+```JavaScript
+<template>
+    <div>
+        <schart :canvasId="canvasId"
+				:type="type"
+				:width="width"
+				:height="height"
+				:data="data"
+				:options="options"
+		></schart>
+    </div>
+</template>
+	
+<script>
+    import Schart from 'vue-schart';        // 导入Schart组件
+    export default {
+        data: function(){
+            return {
+                canvasId: 'myCanvas',       // canvas的id
+                type: 'bar',                // 图表类型
+                width: 500,
+                height: 400,
+                data: [
+                    {name: '2014', value: 1342},
+                    {name: '2015', value: 2123},
+                    {name: '2016', value: 1654},
+                    {name: '2017', value: 1795},
+                ],
+                options: {                  // 图表可选参数
+                    title: 'Total sales of stores in recent years'
+                }
+            }
+        },
+        components: {
+            Schart
+        }
+    }
+</script>
 ```
 
-Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/#/deploy) for more information
+### element-ui ###
+一套基于vue.js2.0的桌面组件库。访问地址：[element](http://element.eleme.io/#/zh-CN/component/layout)
 
-## Changelog
-Detailed changes for each release are documented in the [release notes](https://github.com/PanJiaChen/vue-element-admin/releases).
+### vue-datasource ###
+一个用于动态创建表格的vue.js服务端组件。访问地址：[vue-datasource](https://github.com/coderdiaz/vue-datasource)
 
-## Online Demo
-[Preview](http://panjiachen.github.io/vue-element-admin)
 
-## Donate
-If you find this project useful, you can buy author a glass of juice :tropical_drink:
 
-![donate](https://wpimg.wallstcn.com/bd273f0d-83a0-4ef2-92e1-9ac8ed3746b9.png)
+### Vue-Quill-Editor ###
+基于Quill、适用于Vue2的富文本编辑器。访问地址：[vue-quill-editor](https://github.com/surmon-china/vue-quill-editor)
 
-[Paypal Me](https://www.paypal.me/panfree23)
+### Vue-SimpleMDE ###
+Vue.js的Markdown Editor组件。访问地址：[Vue-SimpleMDE](https://github.com/F-loat/vue-simplemde)
 
-## License
 
-[MIT](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
 
-Copyright (c) 2017-present PanJiaChen
+### Vue-Core-Image-Upload ###
+一款轻量级的vue上传插件，支持裁剪。访问地址：[Vue-Core-Image-Upload](https://github.com/Vanthink-UED/vue-core-image-upload)
+
+
+
+
+## 其他注意事项 ##
+### 一、如果我不想用到上面的某些组件呢，那我怎么在模板中删除掉不影响到其他功能呢？ ###
+
+举个栗子，我不想用 vue-datasource 这个组件，那我需要分四步走。
+
+第一步：删除该组件的路由，在目录 src/router/index.js 中，找到引入改组件的路由，删除下面这段代码。
+
+```JavaScript
+{
+    path: '/vuetable',
+    component: resolve => require(['../components/page/VueTable.vue'], resolve)     // vue-datasource组件
+},
+```
+
+第二步：删除引入该组件的文件。在目录 src/components/page/ 删除 VueTable.vue 文件。
+
+第三步：删除该页面的入口。在目录 src/components/common/Sidebar.vue 中，找到该入口，删除下面这段代码。
+	
+```HTML
+<el-menu-item index="vuetable">Vue表格组件</el-menu-item>
+```
+
+第四步：卸载该组件。执行以下命令：
+	
+	npm un vue-datasource -S
+
+完成。
+
+### 二、如何切换主题色呢？ ###
+
+第一步：打开 src/main.js 文件，找到引入 element 样式的地方，换成浅绿色主题。
+
+```javascript
+import 'element-ui/lib/theme-default/index.css';    // 默认主题
+// import '../static/css/theme-green/index.css';       // 浅绿色主题
+```
+
+第二步：打开 src/App.vue 文件，找到 style 标签引入样式的地方，切换成浅绿色主题。
+
+```javascript
+@import "../static/css/main.css";
+@import "../static/css/color-dark.css";     /*深色主题*/
+/*@import "../static/css/theme-green/color-green.css";   !*浅绿色主题*!*/
+```
+
+第三步：打开 src/components/common/Sidebar.vue 文件，找到 el-menu 标签，把 theme="dark" 去掉即可。
+
+## 项目截图 ##
+### 默认皮肤 ###
+
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms1.png)
+
+### 浅绿色皮肤 ###
+
+![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/wms2.png)
