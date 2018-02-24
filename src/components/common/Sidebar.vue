@@ -27,13 +27,21 @@
                     {
                         icon: 'el-icon-setting',
                         index: 'readme',
-                        title: '自述'
+                        title: '数据'
                     },
                     {
                         icon: 'el-icon-menu',
                         index: '2',
-                        title: '表格',
+                        title: '管理',
                         subs: [
+                            {
+                                index: 'community_list',
+                                title: '行动社'
+                            },
+                            {
+                                index: 'user_list',
+                                title: '用户'
+                            },
                             {
                                 index: 'basetable',
                                 title: '基础表格'

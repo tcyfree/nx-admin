@@ -19,7 +19,15 @@ export default new Router({
                 },
                 {
                     path: '/basetable',
-                    component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+                        component: resolve => require(['../components/page/BaseTable.vue'], resolve)
+                },
+                {
+                    path: '/community_list',
+                    component: resolve => require(['../components/page/CommunityList.vue'], resolve)
+                },
+                {
+                    path: '/user_list',
+                        component: resolve => require(['../components/page/UserList.vue'], resolve)
                 },
                 {
                     path: '/vuetable',

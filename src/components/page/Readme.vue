@@ -77,7 +77,7 @@
         padding: 45px;
         word-wrap: break-word;
         background-color: #fff;
-        border: 1px solid #ddd;
+        /*border: 1px solid #ddd;*/
         border-bottom-right-radius: 3px;
         border-bottom-left-radius: 3px;
     }
@@ -89,8 +89,8 @@
         margin-left: 15px;
         padding-right: 15px;
         padding-left: 10px;
-        border-bottom: 1px solid #ddd;
-        background: grey;
+        border: 1px solid #ddd;
+        /*background: grey;*/
         border-radius: 8px;
         float: left;
         width: 250px;
