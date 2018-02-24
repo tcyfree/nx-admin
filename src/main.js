@@ -29,7 +29,7 @@ axios.interceptors.request.use(
         Promise.reject(error)
     });
 
-// respone拦截器
+// respone拦截器.
 // axios.interceptors.response.use(
 //     response => response,
 //     /**
