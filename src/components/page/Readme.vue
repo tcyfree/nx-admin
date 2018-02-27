@@ -52,9 +52,17 @@
                         }
                         console.log(error.config);
                     });
+            },
+            checkLogin(){
+                let token = localStorage.getItem("token");
+                console.log(token)
+                if (token === null){
+                    this.$router.push({path:"/"});
+                }
             }
         },
         created(){
+            this.checkLogin();
             this.fetchCustomers();
         }
     }
