@@ -50,22 +50,32 @@
                 }
             },
             submitForm(formName) {
-                const self = this;
-                self.$refs[formName].validate((valid) => {
+                const that = this;
+                that.$refs[formName].validate((valid) => {
                     if (valid) {
                         this.$axios.get('http://auth.go-qxd.com/api/v1/user/admin_token',{
                             params: {
-                                username: self.ruleForm.username,
-                                password: self.ruleForm.password
+                                username: that.ruleForm.username,
+                                password: that.ruleForm.password
                             }
                         }).then(function(response){
                             localStorage.setItem("token",response.data.token);
                             console.log(response)
-                            localStorage.setItem('ms_username',self.ruleForm.username);
-                            self.$router.push('/readme');
+                            localStorage.setItem('ms_username',that.ruleForm.username);
+                            that.$message.success({
+                                showClose: true,
+                                message: '登录成功！',
+                                duration: 2000
+                            });
+                            that.$router.push('/readme');
                         }).catch(function (error) {
                             // console.log(error.response.data);
-                            alert(error.response.data.msg)
+                            that.$message.error({
+                                showClose: true,
+                                message: error.response.data.msg,
+                                type: 'error'
+                            });
+                            // alert(error.response.data.msg)
                             if (error.response) {
                                 // 请求已发出，但服务器响应的状态码不在 2xx 范围内
                                 console.log(error.response.data);
