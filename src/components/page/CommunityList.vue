@@ -28,7 +28,7 @@
                             <p>社群活动：{{customer.activity_count}}</p>
                         </td>
                         <td>
-                            <form v-on:submit="updateCustomer(customer.id,customer.status,$event)">
+                            <form v-on:submit="updateCustomer(customer.id,customer.status,customer.name,$event)">
                                 <input type="radio" id="one" value="0" v-model="customer.status">
                                 <label for="one">正常</label>
                                 <br>
@@ -154,10 +154,10 @@
                     .then(function(response){
                         console.log(response.data)
                         var res = response.data;
-                        self.totalCount = res.total
-                        self.pageCount = res.last_page
-                        self.pageSize = res.per_page
-                        self.arrayData = res.data
+                        self.totalCount = res.total;
+                        self.pageCount = res.last_page;
+                        self.pageSize = res.per_page;
+                        self.arrayData = res.data;
                     }).catch(e => {
                     // 打印一下错误
                     console.log(e)
@@ -165,25 +165,39 @@
 
                 })
             },
-            updateCustomer(id,status,$event){
+            updateCustomer(id,status,name,$event){
                 const self = this;
                 let updateCustomer = {
                     id:id,
                     status:status,
+                    name:name
                 }
-                self.$axios.put("http://api.go-qxd.com/admin/community/status",updateCustomer)
-                    .then(function(response){
-                        self.$router.push({path:"/basetable?page="+ self.pageCurrent + "&size=" + self.pageSize});
-                        alert('ok!');
-                        $event.preventDefault();
-                    }).catch(e => {
-                    // 打印一下错误
-                    console.log(e)
-                var error = e.body;
-                if (error.error_code){
-                    alert(error.msg)
+                let msg = '进行封禁';
+                if (status == 0){
+                    msg = '恢复正常';
+                }else if (status == 1){
+                    msg = '进行冻结';
                 }
-            })
+
+                this.$confirm('确认对行动社\''+ name + ' ' + msg +'\'吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    self.$axios.put("http://api.go-qxd.com/admin/community/status",updateCustomer)
+                        .then(function(response){
+                            self.$router.push({path:"/community_list?page="+ self.pageCurrent + "&size=" + self.pageSize});
+                            $event.preventDefault();
+                        }).catch(e => {
+                        // 打印一下错误
+                        console.log(e)
+                        var error = e.body;
+                        if (error.error_code){
+                            alert(error.msg)
+                        }
+                    })
+                }).catch(() => {
+
+                });
+
                 $event.preventDefault();
             },
             showPage(pageIndex, $event, forceRefresh){

@@ -73,7 +73,6 @@
                             that.$message.error({
                                 showClose: true,
                                 message: error.response.data.msg,
-                                type: 'error'
                             });
                             // alert(error.response.data.msg)
                             if (error.response) {
