@@ -20,7 +20,7 @@
 
 <script>
     export default {
-        data: function(){
+        data(){
             return {
                 ruleForm: {
                     username: '',
@@ -36,7 +36,19 @@
                 }
             }
         },
+        created(){
+            this.checkLogin();
+        },
         methods: {
+            checkLogin(){
+                let token = localStorage.getItem("token");
+                console.log(token)
+                if (token === null){
+                    this.$router.push({path:"/"});
+                }else {
+                    this.$router.push({path:"/readme"});
+                }
+            },
             submitForm(formName) {
                 const self = this;
                 self.$refs[formName].validate((valid) => {
