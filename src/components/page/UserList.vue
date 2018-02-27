@@ -116,12 +116,31 @@
             this.checkLogin();
         },
         methods:{
+            /**
+             * 判断是否登录
+             */
             checkLogin(){
                 let token = localStorage.getItem("token");
                 console.log(token)
                 if (token === null){
-                    this.$router.push({path:"/"});
+                    this.$router.push({path:"/login"});
                 }
+            },
+            /**
+             * 判断token令牌是否失效
+             *
+             * @param res
+             */
+            checkToken(res){
+                if (res.error_code == 10001){
+                    alert(res.msg);
+                    localStorage.removeItem('ms_username')
+                    localStorage.removeItem('token')
+                    this.$router.push({path:"/login"});
+                }else {
+                    alert(res.msg)
+                }
+
             },
             fetchCustomers(){
                 let self = this;
@@ -134,7 +153,8 @@
                         self.arrayData = res.data
                     }).catch(e => {
                     // 打印一下错误
-                    console.log(e)
+                    console.log(e);
+                    self.checkToken(e.response.data)
             })
             },
             updateCustomer(id,status,$event){
