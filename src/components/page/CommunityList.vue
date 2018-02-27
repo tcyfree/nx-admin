@@ -139,7 +139,11 @@
              */
             checkToken(res){
                 if (res.error_code == 10001){
-                    alert(res.msg);
+                    this.$message({
+                        showClose: true,
+                        message: res.msg,
+                        type: 'error'
+                    });
                     localStorage.removeItem('ms_username')
                     localStorage.removeItem('token')
                     this.$router.push({path:"/login"});
@@ -159,11 +163,10 @@
                         self.pageSize = res.per_page;
                         self.arrayData = res.data;
                     }).catch(e => {
-                    // 打印一下错误
-                    console.log(e)
-                    self.checkToken(e.response.data)
-
-                })
+                        // 打印一下错误
+                        console.log(e)
+                        self.checkToken(e.response.data)
+                    })
             },
             updateCustomer(id,status,name,$event){
                 const self = this;

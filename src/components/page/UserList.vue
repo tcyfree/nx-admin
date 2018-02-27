@@ -133,7 +133,11 @@
              */
             checkToken(res){
                 if (res.error_code == 10001){
-                    alert(res.msg);
+                    this.$message({
+                        showClose: true,
+                        message: res.msg,
+                        type: 'error'
+                    });
                     localStorage.removeItem('ms_username')
                     localStorage.removeItem('token')
                     this.$router.push({path:"/login"});

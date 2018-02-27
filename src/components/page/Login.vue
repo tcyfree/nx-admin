@@ -44,7 +44,7 @@
                 let token = localStorage.getItem("token");
                 console.log(token)
                 if (token === null){
-                    this.$router.push({path:"/"});
+                    this.$router.push({path:"/login"});
                 }else {
                     this.$router.push({path:"/readme"});
                 }
