@@ -148,7 +148,7 @@
             },
             fetchCustomers(){
                 let self = this;
-                self.$axios.get("http://api.go-qxd.com/admin/user_list?page="+ self.pageCurrent + "&size=" + self.pageSize)
+                self.$axios.get("https://api.go-qxd.com/admin/user_list?page="+ self.pageCurrent + "&size=" + self.pageSize)
                     .then(function(response){
                         var res = response.data;
                         self.totalCount = res.total
