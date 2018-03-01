@@ -34,7 +34,7 @@
         methods:{
             fetchCustomers(){
                 let that = this;
-                this.$axios.get("http://api.go-qxd.com/admin/report")
+                this.$axios.get("https://api.go-qxd.com/admin/report")
                     .then(function(response){
                         console.log(response.data)
                         that.report = response.data;
