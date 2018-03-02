@@ -53,7 +53,7 @@
                 const that = this;
                 that.$refs[formName].validate((valid) => {
                     if (valid) {
-                        this.$axios.get('https://auth.go-qxd.com/api/v1/user/admin_token',{
+                        this.$axios.get('http://auth.go-qxd.com/api/v1/user/admin_token',{
                             params: {
                                 username: that.ruleForm.username,
                                 password: that.ruleForm.password
@@ -64,7 +64,7 @@
                             localStorage.setItem('ms_username',that.ruleForm.username);
                             that.$message.success({
                                 showClose: true,
-                                message: '登录成功了！',
+                                message: '登录成功',
                                 duration: 2000
                             });
                             that.$router.push('/readme');

@@ -154,7 +154,7 @@
             },
             fetchCustomers(){
                 const self = this;
-                self.$axios.get("https://api.go-qxd.com/admin/community_list?page="+ this.pageCurrent + "&size=" + this.pageSize)
+                self.$axios.get("http://api.go-qxd.com/admin/community_list?page="+ this.pageCurrent + "&size=" + this.pageSize)
                     .then(function(response){
                         console.log(response.data)
                         var res = response.data;
