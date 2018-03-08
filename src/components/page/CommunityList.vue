@@ -93,7 +93,6 @@
 </template>
 <script >
     export default {
-
         data(){
             return{
                 //为第一页或者最后一页时，首页，尾页不能点击
@@ -188,7 +187,6 @@
                     self.$axios.put("http://api.go-qxd.com/admin/community/status",updateCustomer)
                         .then(function(response){
                             self.$router.push({path:"/community_list?page="+ self.pageCurrent + "&size=" + self.pageSize});
-                            $event.preventDefault();
                         }).catch(e => {
                         // 打印一下错误
                         console.log(e)
