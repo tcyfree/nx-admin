@@ -1,10 +1,10 @@
 <template>
     <div class="header">
-        <div class="logo">后台管理系统</div>
+        <div class="logo">暖象科技 | 后台管理系统</div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <img class="user-logo" src="../../../static/img/img.jpg">
+                    <img class="user-logo" src="../../../static/img/nx-xds-logo.jpg">
                     {{username}}
                 </span>
                 <el-dropdown-menu slot="dropdown">

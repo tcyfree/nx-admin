@@ -6,8 +6,8 @@
             <!--</el-breadcrumb>-->
         <!--</div>-->
         <div class="ms-doc">
-            <h1 style="text-align: center;">数据概览</h1>
-            <br/>
+            <!--<h1 style="text-align: center;">数据概览</h1>-->
+            <!--<br/>-->
             <article>
                 <h1>社群总数：
                     <label>{{report.community_count}}</label>
@@ -93,7 +93,7 @@
         /*background: grey;*/
         border-radius: 8px;
         float: left;
-        width: 250px;
+        width: 270px;
         height: 250px;
         line-height: 250px;
     }
