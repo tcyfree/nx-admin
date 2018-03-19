@@ -23,7 +23,7 @@
                         <td>{{customer.total_expenses}}</td>
                         <td>{{customer.total_income}}</td>
                         <td>
-                            <form v-on:submit="updateCustomer(customer.id,customer.status,$event)">
+                            <form v-on:submit="updateCustomer(customer.id,customer.status,customer.info.nickname,$event)">
                                 <input type="radio" id="one" value="1" v-model="customer.status">
                                 <label for="one">正常</label>
                                 <br>
@@ -116,12 +116,35 @@
             this.checkLogin();
         },
         methods:{
+            /**
+             * 判断是否登录
+             */
             checkLogin(){
-                var token = localStorage.getItem("token");
+                let token = localStorage.getItem("token");
                 console.log(token)
                 if (token === null){
-                    this.$router.push({path:"/"});
+                    this.$router.push({path:"/login"});
                 }
+            },
+            /**
+             * 判断token令牌是否失效
+             *
+             * @param res
+             */
+            checkToken(res){
+                if (res.error_code == 10001){
+                    this.$message({
+                        showClose: true,
+                        message: res.msg,
+                        type: 'error'
+                    });
+                    localStorage.removeItem('ms_username')
+                    localStorage.removeItem('token')
+                    this.$router.push({path:"/login"});
+                }else {
+                    alert(res.msg)
+                }
+
             },
             fetchCustomers(){
                 let self = this;
@@ -134,24 +157,37 @@
                         self.arrayData = res.data
                     }).catch(e => {
                     // 打印一下错误
-                    console.log(e)
+                    console.log(e);
+                    self.checkToken(e.response.data)
             })
             },
-            updateCustomer(id,status,$event){
+            updateCustomer(id,status,nickname,$event){
                 let self = this;
                 let updateCustomer = {
                     id:id,
                     status:status,
+                    nickname:nickname
                 }
-                self.$axios.put("http://api.go-qxd.com/admin/user/status",updateCustomer)
-                    .then(function(response){
-                        self.$router.push({path:"/user_list?page="+ self.pageCurrent + "&size=" + self.pageSize});
-                        alert('ok!');
-                        $event.preventDefault();
-                    }).catch(e => {
-                    // 打印一下错误
-                    console.log(e)
-            })
+                let msg = '恢复正常';
+                if (status == 0){
+                    msg = '进行封禁';
+                }
+                this.$confirm('确认对用户\''+ nickname + ' ' + msg +'\'吗?', '提示', {
+                    type: 'warning'
+                }).then(() => {
+                    self.$axios.put("http://api.go-qxd.com/admin/user/status",updateCustomer)
+                        .then(function(response){
+                            self.$router.push({path:"/user_list?page="+ self.pageCurrent + "&size=" + self.pageSize});
+                            $event.preventDefault();
+                        }).catch(e => {
+                        // 打印一下错误
+                        console.log(e)
+                    })
+                }).catch(() => {
+
+                });
+
+
                 $event.preventDefault();
             },
             showPage(pageIndex, $event, forceRefresh){
