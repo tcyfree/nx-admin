@@ -19,7 +19,7 @@
                     <tr v-for="customer in arrayData">
                         <td><img v-bind:src="customer.cover_image" width="100px" height="100px" ></td>
                         <td>{{customer.name}}</td>
-                        <td v-html="customer.profile">{{customer.profile}}</td>
+                        <td style="width: 300px">{{customer.description}}</td>
                         <td>{{customer.all_count}}</td>
                         <td>{{customer.pay_count}}</td>
                         <td>
