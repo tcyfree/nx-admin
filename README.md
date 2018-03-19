@@ -3,7 +3,7 @@
 
 [English document](https://github.com/lin-xin/manage-system/blob/master/README_EN.md)
 
-![Image text](https://github.com/lin-xin/manage-system/raw/master/screenshots/Vue.png)
+![Image text](https://github.com/tcyfree/admin.go-qxd.com/screenshots/Vue.png)
 [后台架构体系图](https://www.processon.com/view/link/5a961b3ee4b0ee47162b3b62)
 
 ## 前言 ##
